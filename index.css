@@ -1,0 +1,8 @@
+.aboutme {
+  display: flex;
+}
+.aboutme img {
+  margin: 30px;
+  width: 400px;
+  border-radius: 200px;
+}
