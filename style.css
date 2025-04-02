@@ -290,3 +290,18 @@ tr:hover {
   font-weight: bold;
   color: #333;
 }
+
+.aboutme {
+  display: flex;
+}
+.aboutme img {
+  margin: 30px;
+  width: 400px;
+  border-radius: 200px;
+}
+
+.box {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
