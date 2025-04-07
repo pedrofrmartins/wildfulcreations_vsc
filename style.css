@@ -129,25 +129,6 @@ footer {
   display: none;
 }
 
-@media (max-width: 962px) {
-  .icons {
-    display: inline-flex;
-  }
-
-  nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 17.7rem;
-    background: rgb(255, 255, 255, 0.7);
-    display: block;
-    border: #000000;
-    font-size: 1.1rem;
-    text-align: center;
-  }
-}
-
 /* Navigation links */
 nav a {
   font-family: "lobster", sans-serif;
@@ -170,38 +151,25 @@ nav a:hover {
   border-color: orange;
 }
 
-/* .sidebar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  width: 250px;
-  z-index: 999;
-  background-color: rgba(255, 255, 255, 0.445);
-  backdrop-filter: blur(10px);
-  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
-  display: display;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  line-height: 200%;
-}
-
-.sidebar a {
-  width: 100%;
-}
-.sidebar a:first-child {
-  margin-top: 10%;
-}
-
-@media (max-width: 760px) {
-  .sidebar {
-    display: flex;
+@media (max-width: 962px) {
+  .icons {
+    display: inline-flex;
   }
+
   nav {
-    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 17.7rem;
+    background: rgb(255, 255, 255, 0.7);
+    font-size: 1.1rem;
   }
-} */
+  nav a {
+    display: block;
+    text-align: right;
+  }
+}
 
 .column .location {
   display: flex;
