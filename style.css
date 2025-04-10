@@ -1,7 +1,9 @@
-@font-face {
-  font-family: "lobster";
-  src: url(/fonts/Lobster-Regular.ttf);
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
+
 @font-face {
   font-family: "winkysans";
   src: url(/fonts/Winky_Sans/static/WinkySans-Regular.ttf);
