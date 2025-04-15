@@ -119,7 +119,7 @@ footer {
   justify-content: center; /* Center the grid container */
 }
 
-.footer-grid {
+footer .footer-grid {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
