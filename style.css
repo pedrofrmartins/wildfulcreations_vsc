@@ -285,10 +285,12 @@ td {
   padding: 15px;
   text-align: center;
   border: 1px solid #ddd;
+  white-space: nowrap;
 }
 th {
   background-color: #f4f4f4;
   font-weight: bold;
+  white-space: nowrap;
 }
 tr:nth-child(even) {
   background-color: #f9f9f9;
@@ -371,6 +373,12 @@ tr:hover {
 
   #check:checked ~ nav a {
     transform: translateY(0);
+  }
+
+  table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
   }
 
   footer .column .location {
