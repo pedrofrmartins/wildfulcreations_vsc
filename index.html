@@ -1,133 +1,1692 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WildfulCreations</title>
-    <link rel="icon" href="images/logo.svg" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lobster&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
-      rel="stylesheet"
-    />
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WildfulCreations — Retratos de Patudos por Diana Fernandes</title>
+<meta name="description" content="Retratos de animais feitos à mão por Diana Fernandes, em Nazaré. Lápis de cor, pastel, scratchboard, grafite. Arte com alma para amantes da Natureza e dos seus patudos." />
+<link rel="icon" href="images/logo.svg" />
 
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-  </head>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=Karla:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
 
-  <body>
-    <header>
-      <a href="index.html">
-        <img src="images/logo.svg" alt="WildfulCreations" />
+<style>
+/* =====================================================
+   WildfulCreations — Botanical Journal Theme
+   ===================================================== */
+
+:root{
+  --cream:    #F5EFE4;
+  --paper:    #FBF7EE;
+  --paper-2:  #EDE6D6;
+  --ink:      #2A2823;
+  --ink-soft: #4A463E;
+  --moss:     #4A5D43;
+  --moss-deep:#34432F;
+  --leaf:     #8FA47C;
+  --clay:     #B8704D;
+  --clay-soft:#D6936F;
+  --sand:     #D9CDB8;
+  --line:     rgba(42, 40, 35, 0.12);
+
+  --font-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  --font-body:    "Karla", "Helvetica Neue", system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius:    14px;
+  --radius-lg: 22px;
+
+  --maxw: 1200px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Subtle paper grain */
+  background-image:
+    radial-gradient(at 20% 10%, rgba(143,164,124,0.08) 0, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(184,112,77,0.06) 0, transparent 50%);
+}
+
+img{ max-width:100%; display:block; }
+a{ color: var(--moss-deep); text-decoration:none; transition: color .25s ease; }
+a:hover{ color: var(--clay); }
+
+::selection{ background: var(--leaf); color: var(--paper); }
+
+/* ---------- Typography ---------- */
+h1,h2,h3,h4{
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.eyebrow{
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--moss);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before{
+  content:"";
+  width: 28px; height:1px;
+  background: var(--moss);
+  display:inline-block;
+}
+
+p{
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+p + p{ margin-top: 1em; }
+
+/* ---------- Layout primitives ---------- */
+.wrap{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+section.section{
+  padding: 110px 0;
+  position: relative;
+}
+section.section--alt{ background: var(--paper); }
+
+.section-head{
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-head h2{
+  font-size: clamp(38px, 5vw, 60px);
+  margin-top: 14px;
+}
+.section-head p{
+  max-width: 640px;
+  margin: 18px auto 0;
+}
+
+/* Decorative leaf divider */
+.divider{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 18px auto 0;
+  color: var(--leaf);
+}
+.divider .line{
+  width: 50px; height:1px;
+  background: currentColor;
+  opacity: .55;
+}
+.divider svg{ width: 20px; height: 20px; opacity: .9; }
+
+/* =====================================================
+   Header / Nav
+   ===================================================== */
+header.site{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,239,228,0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand img{ height: 56px; width:auto; transition: transform .3s ease; }
+.brand:hover img{ transform: scale(1.05); }
+
+.nav-links{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-links a{
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: background .25s ease, color .25s ease;
+  position: relative;
+}
+.nav-links a:hover{ background: var(--paper-2); color: var(--moss-deep); }
+.nav-cta{
+  background: var(--moss);
+  color: var(--paper) !important;
+  padding: 10px 20px !important;
+  border-radius: 999px;
+  margin-left: 8px;
+  transition: background .25s ease, transform .25s ease;
+}
+.nav-cta:hover{
+  background: var(--moss-deep) !important;
+  transform: translateY(-1px);
+}
+
+/* Mobile menu toggle */
+.menu-btn{
+  display: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  width: 44px; height: 44px;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+.menu-btn svg{ width: 26px; height: 26px; }
+
+/* =====================================================
+   HERO
+   ===================================================== */
+.hero{
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--moss-deep);
+}
+.hero-bg{
+  position: absolute; inset: 0;
+  background-image: url('images/20250425_124452.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.05);
+}
+.hero-bg::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(42,40,35,0.15) 0%, rgba(42,40,35,0.45) 60%, rgba(245,239,228,0.95) 100%),
+    linear-gradient(90deg, rgba(42,40,35,0.55), rgba(42,40,35,0.05));
+}
+
+.hero-content{
+  position: relative;
+  z-index: 2;
+  max-width: var(--maxw);
+  width: 100%;
+  margin: 0 auto;
+  padding: 120px 28px 160px;
+  color: var(--paper);
+}
+.hero-eyebrow{
+  color: var(--paper);
+  opacity: .9;
+}
+.hero-eyebrow::before{ background: var(--paper); opacity: .9; }
+
+.hero h1{
+  font-size: clamp(48px, 8vw, 110px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--paper);
+  line-height: 1.02;
+  margin: 22px 0 18px;
+  max-width: 12ch;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.25);
+}
+.hero h1 em{
+  font-style: italic;
+  color: var(--clay-soft);
+  font-weight: 400;
+}
+.hero-sub{
+  color: rgba(251,247,238,0.92);
+  font-size: clamp(17px, 1.6vw, 21px);
+  max-width: 540px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+.hero-actions{
+  display: flex;
+  gap: 14px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .3s ease;
+  border: 0;
+}
+.btn-primary{
+  background: var(--clay);
+  color: var(--paper);
+}
+.btn-primary:hover{
+  background: var(--paper);
+  color: var(--moss-deep);
+  transform: translateY(-2px);
+}
+.btn-ghost{
+  background: transparent;
+  color: var(--paper);
+  border: 1px solid rgba(251,247,238,0.5);
+}
+.btn-ghost:hover{
+  background: rgba(251,247,238,0.12);
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+/* Scroll cue */
+.scroll-cue{
+  position: absolute;
+  bottom: 38px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  color: var(--paper);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.scroll-cue .dot{
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--paper), transparent);
+  animation: drop 2.2s ease-in-out infinite;
+}
+@keyframes drop{
+  0%{ transform: scaleY(0); transform-origin: top; }
+  50%{ transform: scaleY(1); transform-origin: top; }
+  51%{ transform-origin: bottom; }
+  100%{ transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* =====================================================
+   ABOUT
+   ===================================================== */
+.about-grid{
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-portrait{
+  position: relative;
+}
+.about-portrait img{
+  width: 100%;
+  border-radius: 50% 50% 50% 50% / 48% 52% 48% 52%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  box-shadow: 0 30px 60px -20px rgba(42,40,35,0.35);
+}
+.about-portrait::before{
+  content:"";
+  position: absolute;
+  inset: -18px;
+  border: 1px solid var(--leaf);
+  border-radius: 50% 50% 50% 50% / 48% 52% 48% 52%;
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+}
+.about-portrait .leaf-deco{
+  position: absolute;
+  width: 110px;
+  color: var(--leaf);
+  opacity: 0.85;
+}
+.about-portrait .leaf-deco.tl{ top: -40px; left: -30px; transform: rotate(-25deg); }
+.about-portrait .leaf-deco.br{ bottom: -30px; right: -20px; transform: rotate(160deg); }
+
+.about-text h2{
+  font-size: clamp(38px, 4.5vw, 56px);
+  margin-top: 16px;
+  margin-bottom: 22px;
+}
+.about-text .signature{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--moss-deep);
+  margin-top: 24px;
+}
+
+/* =====================================================
+   PORTFOLIO GALLERY
+   ===================================================== */
+.gallery{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.gallery .item{
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  aspect-ratio: 3/4;
+  cursor: zoom-in;
+}
+.gallery .item img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .8s ease, filter .5s ease;
+}
+.gallery .item::after{
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(42,40,35,0.35));
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.gallery .item:hover img{ transform: scale(1.06); }
+.gallery .item:hover::after{ opacity: 1; }
+
+/* Collapsed portfolio (show ~3 rows, expand on click) */
+/* Desktop = 4 cols → show 12 items (3 rows) */
+.gallery.collapsed .item:nth-child(n+13){ display: none; }
+/* Tablet = 3 cols → show 9 items (3 rows) */
+@media (max-width: 980px){
+  .gallery.collapsed .item:nth-child(n+10){ display: none; }
+}
+/* Mobile = 2 cols → show 6 items (3 rows) */
+@media (max-width: 720px){
+  .gallery.collapsed .item:nth-child(n+7){ display: none; }
+}
+
+.load-more-wrap{
+  text-align: center;
+  margin-top: 38px;
+}
+.btn-load-more{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: 1px solid var(--moss);
+  color: var(--moss-deep);
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.btn-load-more:hover{
+  background: var(--moss);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+.btn-load-more svg{
+  width: 16px; height: 16px;
+  transition: transform .35s ease;
+}
+.btn-load-more.is-expanded svg{ transform: rotate(180deg); }
+
+/* Gallery item span variations for organic layout */
+.gallery .item.tall{ aspect-ratio: 3/5; }
+.gallery .item.wide{ aspect-ratio: 4/3; grid-column: span 2; }
+
+/* =====================================================
+   TECHNIQUES
+   ===================================================== */
+.techniques{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+.tech-card{
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 3/4;
+  cursor: pointer;
+}
+.tech-card img{
+  width:100%; height:100%; object-fit:cover;
+  transition: transform .8s ease;
+}
+.tech-card::after{
+  content:"";
+  position: absolute; inset:0;
+  background: linear-gradient(180deg, rgba(42,40,35,0) 40%, rgba(42,40,35,0.85) 100%);
+}
+.tech-card .label{
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 24px 22px;
+  z-index: 2;
+  color: var(--paper);
+}
+.tech-card .label .num{
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  opacity: 0.75;
+  display: block;
+  margin-bottom: 6px;
+}
+.tech-card .label h3{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--paper);
+}
+.tech-card:hover img{ transform: scale(1.06); }
+
+/* =====================================================
+   PHOTO GUIDE
+   ===================================================== */
+.tips{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.tip{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.tip:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -20px rgba(42,40,35,0.18);
+  border-color: var(--leaf);
+}
+.tip .icon{
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+}
+.tip .icon img{ width: 28px; height: 28px; opacity: 0.85; }
+.tip h3{
+  font-size: 24px;
+  font-style: italic;
+  margin-bottom: 8px;
+  color: var(--moss-deep);
+}
+.tip p{ font-size: 15.5px; line-height: 1.65; }
+
+.examples-good{
+  margin-top: 60px;
+}
+.examples-good h3{
+  font-size: 28px;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--moss-deep);
+}
+.examples-good .gallery{ grid-template-columns: repeat(3, 1fr); }
+.examples-good .item{ aspect-ratio: 1/1; }
+
+/* =====================================================
+   PRICING
+   ===================================================== */
+.pricing-table{
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  box-shadow: 0 20px 50px -30px rgba(42,40,35,0.18);
+}
+.pricing-table table{
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+.pricing-table th{
+  background: var(--moss-deep);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 19px;
+  padding: 20px 18px;
+  text-align: center;
+  border-right: 1px solid rgba(251,247,238,0.1);
+}
+.pricing-table th:last-child{ border-right: 0; }
+.pricing-table th:first-child{ text-align:left; padding-left: 28px; }
+.pricing-table td{
+  padding: 18px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  color: var(--ink);
+  transition: background .2s ease;
+}
+.pricing-table td:last-child{ border-right: 0; }
+.pricing-table td:first-child{
+  text-align: left;
+  padding-left: 28px;
+  background: var(--paper-2);
+}
+.pricing-table tr:last-child td{ border-bottom: 0; }
+.pricing-table tr:hover td{ background: rgba(143,164,124,0.08); }
+.pricing-table tr:hover td:first-child{ background: var(--sand); }
+.pricing-table .price{ font-weight: 700; color: var(--clay); }
+.pricing-table td:first-child .size-name{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--moss-deep);
+  display: block;
+  line-height: 1.1;
+}
+.pricing-table td:first-child .size-dim{
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  opacity: 0.7;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Mobile-friendly pricing cards (hidden on desktop) */
+.pricing-cards{ display: none; }
+.price-card{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 24px -16px rgba(42,40,35,0.18);
+}
+.price-card-head{
+  background: var(--moss-deep);
+  color: var(--paper);
+  padding: 16px 20px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.price-card-head .size{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 28px;
+  font-weight: 400;
+}
+.price-card-head .size-note{
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.price-card-body{ padding: 8px 4px; }
+.price-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px dashed var(--line);
+}
+.price-row:last-child{ border-bottom: 0; }
+.price-row .technique{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--moss-deep);
+}
+.price-row .amount{
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--clay);
+}
+.price-row .amount.muted{ color: var(--ink-soft); opacity: 0.5; font-weight: 400; font-size: 16px; }
+
+.extras{
+  margin-top: 32px;
+  padding: 26px 28px;
+  background: var(--paper);
+  border-left: 3px solid var(--clay);
+  border-radius: var(--radius-sm);
+}
+.extras h4{
+  font-size: 22px;
+  font-style: italic;
+  margin-bottom: 10px;
+  color: var(--moss-deep);
+}
+.extras ul{ list-style: none; padding: 0; }
+.extras li{
+  padding: 6px 0;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+.extras li::before{
+  content: "+ ";
+  color: var(--clay);
+  font-weight: 700;
+}
+
+/* =====================================================
+   POLICIES (accordion-like cards)
+   ===================================================== */
+.policies{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.policy{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 30px;
+}
+.policy h3{
+  font-size: 24px;
+  font-style: italic;
+  margin-bottom: 14px;
+  color: var(--moss-deep);
+  display: flex; align-items: center; gap: 12px;
+}
+.policy h3 svg{ width: 22px; height: 22px; color: var(--clay); }
+.policy ul{
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+.policy ul li{
+  padding: 6px 0 6px 22px;
+  position: relative;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.policy ul li::before{
+  content: "";
+  position: absolute;
+  left: 0; top: 14px;
+  width: 8px; height: 8px;
+  background: var(--leaf);
+  border-radius: 50%;
+}
+
+/* =====================================================
+   CONTACT / FOOTER
+   ===================================================== */
+.contact{
+  padding: 110px 0 60px;
+  background: var(--moss-deep);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.contact::before{
+  content:"";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(at 15% 20%, rgba(143,164,124,0.18), transparent 50%),
+    radial-gradient(at 90% 90%, rgba(184,112,77,0.18), transparent 50%);
+  pointer-events: none;
+}
+.contact .wrap{ position: relative; z-index: 1; }
+
+.contact .eyebrow{ color: var(--leaf); }
+.contact .eyebrow::before{ background: var(--leaf); }
+
+.contact h2{
+  color: var(--paper);
+  font-size: clamp(40px, 5vw, 64px);
+  margin-top: 14px;
+  font-style: italic;
+  font-weight: 300;
+}
+.contact-lead{
+  color: rgba(251,247,238,0.85);
+  max-width: 580px;
+  margin-top: 16px;
+  font-size: 18px;
+}
+
+.contact-grid{
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.contact-block .label{
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+.contact-block .value{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--paper);
+}
+.contact-block .value a{ color: var(--paper); }
+.contact-block .value a:hover{ color: var(--clay-soft); }
+
+.socials{
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+}
+.socials a{
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(251,247,238,0.08);
+  border: 1px solid rgba(251,247,238,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--paper);
+  transition: all .3s ease;
+}
+.socials a:hover{
+  background: var(--clay);
+  border-color: var(--clay);
+  transform: translateY(-2px);
+}
+.socials svg{ width: 20px; height: 20px; }
+
+.footer-bottom{
+  border-top: 1px solid rgba(251,247,238,0.12);
+  margin-top: 70px;
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  color: rgba(251,247,238,0.55);
+  font-size: 14px;
+}
+
+/* =====================================================
+   Reveal-on-scroll animation
+   ===================================================== */
+.reveal{
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+.reveal.in{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================================================
+   Responsive
+   ===================================================== */
+@media (max-width: 980px){
+  .about-grid{
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .about-portrait{ max-width: 360px; margin: 0 auto; }
+  .gallery{ grid-template-columns: repeat(3, 1fr); }
+  .techniques{ grid-template-columns: repeat(2, 1fr); }
+  .tips{ grid-template-columns: repeat(2, 1fr); }
+  .policies{ grid-template-columns: 1fr; }
+  .contact-grid{ grid-template-columns: 1fr; gap: 36px; }
+}
+
+@media (max-width: 720px){
+  body{ font-size: 16px; }
+  section.section{ padding: 80px 0; }
+
+  .menu-btn{ display: inline-flex; }
+  .nav-links{
+    position: fixed;
+    top: 78px; left: 16px; right: 16px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    box-shadow: 0 24px 50px -20px rgba(42,40,35,0.25);
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s ease;
+  }
+  .nav-links.open{
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .nav-links a{
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: left;
+  }
+  .nav-cta{
+    margin-left: 0 !important;
+    text-align: center !important;
+  }
+
+  .hero{ min-height: 88vh; }
+  .hero-content{ padding: 90px 22px 130px; }
+
+  .gallery{ grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .gallery .item.wide{ grid-column: span 2; }
+  .techniques{ grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tips{ grid-template-columns: 1fr; }
+  .examples-good .gallery{ grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+  /* Switch pricing table for cards on mobile */
+  .pricing-table{ display: none; }
+  .pricing-cards{ display: block; }
+
+  .footer-bottom{ flex-direction: column; text-align: center; }
+
+  .about-portrait .leaf-deco{ width: 70px; }
+}
+
+@media (max-width: 460px){
+  .techniques{ grid-template-columns: 1fr; }
+  .hero h1{ max-width: none; }
+  .hero-actions .btn{ flex: 1; justify-content: center; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html{ scroll-behavior: auto; }
+}
+
+/* =====================================================
+   Lightbox
+   ===================================================== */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 18, 14, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lightbox.open{
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox-img-wrap{
+  position: relative;
+  max-width: 92vw;
+  max-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.96);
+  transition: transform .35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.lightbox.open .lightbox-img-wrap{ transform: scale(1); }
+.lightbox img{
+  max-width: 92vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
+}
+.lb-btn{
+  position: absolute;
+  background: rgba(251,247,238,0.12);
+  border: 1px solid rgba(251,247,238,0.2);
+  color: var(--paper);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .25s ease, transform .25s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2;
+}
+.lb-btn:hover{
+  background: var(--clay);
+  border-color: var(--clay);
+  transform: scale(1.05);
+}
+.lb-btn svg{ width: 22px; height: 22px; }
+.lb-close{
+  top: 22px;
+  right: 22px;
+}
+.lb-prev{
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lb-next{
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lb-prev:hover, .lb-next:hover{ transform: translateY(-50%) scale(1.05); }
+.lb-counter{
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: rgba(251,247,238,0.08);
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(251,247,238,0.15);
+  z-index: 2;
+}
+@media (max-width: 720px){
+  .lb-prev{ left: 12px; width: 44px; height: 44px; }
+  .lb-next{ right: 12px; width: 44px; height: 44px; }
+  .lb-close{ top: 14px; right: 14px; width: 44px; height: 44px; }
+  .lb-counter{ bottom: 14px; font-size: 12px; }
+}
+
+body.lb-locked{ overflow: hidden; }
+</style>
+</head>
+
+<body>
+
+<!-- =================== HEADER =================== -->
+<header class="site">
+  <div class="nav">
+    <a href="#top" class="brand" aria-label="WildfulCreations — início">
+      <img src="images/logo.svg" alt="WildfulCreations" />
+    </a>
+
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false" id="menuBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#sobre">Sobre</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#tecnicas">Técnicas</a>
+      <a href="#guia">Guia</a>
+      <a href="#precario">Preçário</a>
+      <a href="#contacto" class="nav-cta">Encomendar</a>
+    </nav>
+  </div>
+</header>
+
+<!-- =================== HERO =================== -->
+<section class="hero" id="top">
+  <div class="hero-bg" role="img" aria-label="Estúdio da Diana com plantas, lápis de cor e um retrato de cão"></div>
+
+  <div class="hero-content">
+    <span class="eyebrow hero-eyebrow">Nazaré · Portugal</span>
+    <h1>Onde a Natureza<br/>encontra os <em>patudos</em>.</h1>
+    <p class="hero-sub">
+      Retratos feitos à mão, com lápis de cor, pastel, scratchboard e grafite. Cada traço é um abraço apertado a uma alma de quatro patas — feita para aquecer paredes e corações.
+    </p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn btn-primary">
+        Encomendar retrato
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-
-      <input type="checkbox" id="check" />
-      <label for="check" class="icons">
-        <i class="bx bx-menu" id="menu-icon"></i>
-        <i class="bx bx-x" id="close-icon"></i>
-      </label>
-
-      <nav>
-        <a href="index.html">About</a>
-        <a href="portfolio.html">Portfólio</a>
-        <a href="guidelines.html">Guia</a>
-        <a href="pricing.html">Preçário</a>
-      </nav>
-    </header>
-    <div class="image-clip">
-      <img src="images/20250425_124452.jpg" alt="" />
+      <a href="#portfolio" class="btn btn-ghost">Ver portfólio</a>
     </div>
-    <main>
-      <section>
-        <div class="aboutme">
-          <img src="images/dianafernandes.jpg" alt="Diana Fernandes" />
-          <div>
-            <h2 style="text-align: left">About me</h2>
-            <p>
-              Sou a Diana e desde criança que me sinto muito bem entre os lápis
-              e a Natureza. Alguns dos meus passatempos eram desenhar, pintar e
-              brincar com cães no meio do pinhal. FOTO Este carinho que tenho
-              pela Natureza e toda a vida que ela envolve, levou-me a tirar uma
-              licenciatura em biologia, bio em latim significa "vida", na
-              univerdade de Aveiro, onde aprendi imenso, conheci outras
-              realidades e outras pessoas, que ainda hoje fazem parte da minha
-              vida. O facto de biologia ser uma área tão vasta, fez com que
-              naquela altura não me conseguisse identifcar com algo em
-              específico. Por causa disso vim trabalhar com a família, para a
-              área de padaria e pastelaria, mas fiquei sempre com o pensamento
-              que queria trabalhar em algo que gostasse, algo com que me
-              identificasse. Foi então que me deparei com um curso de ilustração
-              científica. Este curso era o melhor dos meus dois mundos, junta a
-              possibilidade de comunicar ciência através da arte. Foi aqui que
-              aprendi várias técnicas e quais os melhores materiais, para que no
-              final consiga obter o melhor resultado possível. Foram tudo
-              ferramentas e dicas que hoje uso todos os dias. FOTOS DE ILUSCIEN.
-              Apesar da ótima formação que tive, continuei a trabalhar com a
-              minha família. Entretanto, o meu carinho pela natureza, em
-              particular por plantas, cresceu ainda mais. Cresceu tanto que fui
-              trabalhar para uma estufa de plantas, aumentando exponencialmente
-              a minha coleção de plantinhas. FOTOS QUADROS PLANTAS E passados 4
-              anos de ter tirado o curso de ilustração científica, decidi
-              aventurar-me, criei uma página profissional no instagram e comecei
-              a fazer retratos de animais. A minha cobaia, ou melhor, a minha
-              musa, foi a minha querida cadela Sandy, que fiz em 3 técnicas
-              diferentes. COLOCAR FOTOS SANDY E a partir daqui, agradeço do
-              fundo do coração à minha família, a todos os amigos e amigas,
-              conhecidos e conhecidas, que me deram a oportunidade de fazer algo
-              que lhes aqueça a alma, que lhes permita trazer memórias e alegrar
-              a casa.
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <div class="footer-grid">
-        <div class="column">
-          <div class="location">
-            <img src="images/location_icon.svg" alt="location_icon" />
-            <p>Nazaré, Portugal</p>
-          </div>
-          <div class="location">
-            <img src="images/email_icon.svg" alt="location_icon" />
-            <p>
-              <a href="mailto:wildfulcreations@gmail.com"
-                >wildfulcreations@gmail.com</a
-              >
-            </p>
-          </div>
-        </div>
-        <div class="column">
-          <div class="logo">
-            <img src="images/logo.svg" alt="WildfulCreations" />
-          </div>
-        </div>
+  </div>
 
-        <div class="column">
-          <div class="social">
-            <a
-              href="https://www.instagram.com/wildful_creations/"
-              target="_blank"
-            >
-              <img
-                src="images/instagram-round-svgrepo-com.svg"
-                alt="instagram_wildfulcreations"
-            /></a>
-            <a
-              href="https://www.facebook.com/profile.php?id=61558253785908"
-              target="_blank"
-            >
-              <img
-                src="images/facebook-svgrepo-com.svg"
-                alt="facebook_wildfulcreations"
-            /></a>
-          </div>
+  <div class="scroll-cue">
+    <span>scroll</span>
+    <span class="dot"></span>
+  </div>
+</section>
+
+<!-- =================== ABOUT =================== -->
+<section class="section" id="sobre">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-portrait reveal">
+        <!-- decorative leaves -->
+        <svg class="leaf-deco tl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M50 95 C 35 70, 15 60, 10 35 C 28 40, 42 55, 50 70 M50 95 C 65 70, 85 60, 90 35 C 72 40, 58 55, 50 70 M50 95 V 25"/>
+        </svg>
+        <svg class="leaf-deco br" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M50 95 C 35 70, 15 60, 10 35 C 28 40, 42 55, 50 70 M50 95 C 65 70, 85 60, 90 35 C 72 40, 58 55, 50 70 M50 95 V 25"/>
+        </svg>
+        <img src="images/dianafernandes.jpg" alt="Retrato da Diana Fernandes" />
+      </div>
+
+      <div class="about-text reveal">
+        <span class="eyebrow">Sobre mim</span>
+        <h2>Bióloga, ilustradora &amp; eterna apaixonada pela vida.</h2>
+        <p>
+          Sou a Diana e desde criança que me sinto bem entre lápis e Natureza. Os meus passatempos eram desenhar, pintar e brincar com cães no meio do pinhal — e essa paixão acabou por desenhar todo o meu caminho.
+        </p>
+        <p>
+          O carinho pela Natureza, e por toda a vida que ela envolve, levou-me à licenciatura em Biologia (em latim, <em>bio</em> significa <em>vida</em>) na Universidade de Aveiro, onde aprendi imenso e conheci pessoas que ainda hoje fazem parte da minha vida.
+        </p>
+        <p>
+          Anos depois, descobri o curso de Ilustração Científica — o melhor dos meus dois mundos: comunicar ciência através da arte. Foi aí que ganhei as ferramentas que uso todos os dias.
+        </p>
+        <p>
+          Trabalhei numa estufa de plantas (a minha coleção de plantinhas explodiu), até que decidi aventurar-me e começar a fazer retratos de animais. A minha cobaia — ou melhor, a minha musa — foi a Sandy, a minha cadela, que retratei em três técnicas diferentes.
+        </p>
+        <p>
+          A partir daí, agradeço do fundo do coração à minha família, amigos e amigas, conhecidos e conhecidas, que me deram a oportunidade de fazer algo que aquece a alma, traz memórias de volta e alegra a casa.
+        </p>
+        <div class="signature">— Diana</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PORTFOLIO =================== -->
+<section class="section section--alt" id="portfolio">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Portfólio</span>
+      <h2>Retratos feitos com alma</h2>
+      <div class="divider">
+        <span class="line"></span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 C 10 8, 6 10, 2 12 C 6 14, 10 16, 12 22 C 14 16, 18 14, 22 12 C 18 10, 14 8, 12 2 Z"/></svg>
+        <span class="line"></span>
+      </div>
+      <p>Cada peça nasce de fotografias, conversas e muita observação. Aqui ficam alguns dos patudinhos que tive o privilégio de desenhar.</p>
+    </div>
+
+    <div class="gallery collapsed reveal" id="portfolioGallery">
+      <div class="item"><img src="images/portfolio/20250402_171840.jpg" alt="Retrato a lápis de cor de três cães" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20250313_132118.jpg" alt="Retrato de cão em lápis de cor" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20250228_122805.jpg" alt="Retrato de cão em lápis de cor" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20250228_123436.jpg" alt="Retrato de cão em lápis de cor" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20250214_210807.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20250205_153956.jpg" alt="Retrato de gato" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20241224_153507.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20241224_152833.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20241220_152729.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20241212_110634(0).jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20241205_153612_exported_21694.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20241112_153828.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20241017_190627.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20241011_153704.jpg" alt="Retrato de Dachshund a pastel" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20241004_165353.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240926_183619.jpg" alt="Retrato de gato" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240906_173456.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240830_214050.jpg" alt="Retrato a pastel" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240730_195130.jpg" alt="Retrato em scratchboard de gato" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240718_134052.jpg" alt="Retrato de gato" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240614_160841.jpg" alt="Retrato de calopsitas" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240605_170821(0).jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240527_193854.jpg" alt="Retrato a grafite com borboleta" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240510_175434.jpg" alt="Cravos a lápis de cor" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240508_143329.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240429_130422.jpg" alt="Retrato de cão" loading="lazy" /></div>
+      <div class="item"><img src="images/portfolio/20240403_203418.jpg" alt="Retrato em scratchboard de cão" loading="lazy" /></div>
+    </div>
+
+    <div class="load-more-wrap reveal">
+      <button class="btn-load-more" id="loadMoreBtn" aria-expanded="false" aria-controls="portfolioGallery">
+        <span class="label-text">Ver portfólio completo</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- =================== TECHNIQUES =================== -->
+<section class="section" id="tecnicas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Técnicas</span>
+      <h2>Quatro mundos, uma só paixão</h2>
+      <p>
+        Atualmente sinto-me mais confortável em lápis de cor, pastel, scratchboard, grafite e tintas acrílicas — mas adoro explorar novos mundos. Se houver uma técnica que gostarias mais, diz-me. Quem sabe se não será o próximo desafio.
+      </p>
+    </div>
+
+    <div class="techniques reveal" id="techGallery">
+      <div class="tech-card">
+        <img src="images/photo1.jpg" alt="Retrato a lápis de cor" loading="lazy" />
+        <div class="label"><span class="num">01</span><h3>Lápis de cor</h3></div>
+      </div>
+      <div class="tech-card">
+        <img src="images/20240830_214050.jpg" alt="Retrato a pastel" loading="lazy" />
+        <div class="label"><span class="num">02</span><h3>Pastel</h3></div>
+      </div>
+      <div class="tech-card">
+        <img src="images/mia_s.jpg" alt="Retrato em scratchboard" loading="lazy" />
+        <div class="label"><span class="num">03</span><h3>Scratchboard</h3></div>
+      </div>
+      <div class="tech-card">
+        <img src="images/20240527_193854.jpg" alt="Retrato a grafite" loading="lazy" />
+        <div class="label"><span class="num">04</span><h3>Grafite</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PHOTO GUIDE =================== -->
+<section class="section section--alt" id="guia">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Guia de Fotografias</span>
+      <h2>Boas fotos, melhor retrato</h2>
+      <p>
+        As fotografias de referência são fundamentais para captar a verdadeira essência do teu patudinho. Há sempre uma foto principal — aquela em que me baseio — mas é importante enviares o máximo possível. Quanto mais fotos, melhor consigo perceber as cores do pêlo, a direção dos pelos e a personalidade.
+      </p>
+    </div>
+
+    <div class="tips reveal">
+      <div class="tip">
+        <div class="icon"><img src="images/mobile-camera-icon.svg" alt="" /></div>
+        <h3>Câmara</h3>
+        <p>Usa um smartphone ou câmara digital de boa qualidade. Envia as fotos sem qualquer corte ou edição — isso reduz a qualidade e a resolução.</p>
+      </div>
+      <div class="tip">
+        <div class="icon"><img src="images/bulb-light-icon.svg" alt="" /></div>
+        <h3>Iluminação</h3>
+        <p>Luz natural é a melhor — junto a uma janela ou numa zona sombreada lá fora. Posiciona a fonte de luz atrás de ti, com o patudo a olhar na direção da luz. Evita flash.</p>
+      </div>
+      <div class="tip">
+        <div class="icon"><img src="images/360-degree-rotate-icon.svg" alt="" /></div>
+        <h3>Ângulo</h3>
+        <p>Captura a foto ao nível dos olhos do patudo para evitar distorcer os traços. Podes baixar a câmara ou pô-lo em cima de algo.</p>
+      </div>
+      <div class="tip">
+        <div class="icon"><img src="images/found-icon.svg" alt="" /></div>
+        <h3>Detalhe</h3>
+        <p>Aproxima-te e preenche o quadro com a cabeça e o peito do patudo, sem usar zoom. Os retratos focam-se nos traços faciais — o detalhe da cabeça é precioso.</p>
+      </div>
+      <div class="tip">
+        <div class="icon"><img src="images/quality-badge-thumbs-up-icon.svg" alt="" /></div>
+        <h3>Qualidade</h3>
+        <p>Foco nítido, sempre. Se conseguires identificar os pelos individualmente com um pouco de zoom, é sinal de que a foto tem qualidade suficiente.</p>
+      </div>
+      <div class="tip">
+        <div class="icon"><img src="images/paw-icon.svg" alt="" /></div>
+        <h3>Personalidade</h3>
+        <p>Tenta capturar o carácter e a expressão natural do teu patudo. Eu desenho o que vejo — escolhe uma fotografia que realmente capture a alma dele.</p>
+      </div>
+    </div>
+
+    <div class="examples-good reveal">
+      <h3>Bons exemplos 👍</h3>
+      <div class="gallery">
+        <div class="item" style="aspect-ratio:1/1"><img src="images/exemplos/IMG-20240724-WA0013.jpg" alt="Bom exemplo de fotografia de referência" loading="lazy" /></div>
+        <div class="item" style="aspect-ratio:1/1"><img src="images/exemplos/IMG-20241006-WA0000.jpg" alt="Bom exemplo de fotografia de referência" loading="lazy" /></div>
+        <div class="item" style="aspect-ratio:1/1"><img src="images/exemplos/IMG-20250129-WA0002.jpg" alt="Bom exemplo de fotografia de referência" loading="lazy" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PRICING =================== -->
+<section class="section" id="precario">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Preçário</span>
+      <h2>Cada retrato, único como o teu patudo</h2>
+      <p>
+        Cada retrato é criado com dedicação e atenção aos detalhes, adaptado às tuas preferências e ao estilo que mais valorizas. Tamanhos personalizados disponíveis mediante consulta — escolhe o formato que melhor se adequa ao teu espaço.
+      </p>
+    </div>
+
+    <div class="pricing-table reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Tamanho</th>
+            <th>Lápis de cor</th>
+            <th>Pastel</th>
+            <th>Grafite</th>
+            <th>Scratchboard</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="size-name">A5</span>
+              <span class="size-dim">14,8 × 21 cm</span>
+            </td>
+            <td><span class="price">70€</span></td>
+            <td><span class="price">70€</span></td>
+            <td><span class="price">50€</span></td>
+            <td><span class="price">80€</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="size-name">A4</span>
+              <span class="size-dim">21 × 29,7 cm</span>
+            </td>
+            <td><span class="price">90€</span></td>
+            <td><span class="price">90€</span></td>
+            <td><span class="price">80€</span></td>
+            <td><span class="price">110€</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="size-name">A3</span>
+              <span class="size-dim">29,7 × 42 cm</span>
+            </td>
+            <td><span class="price">135€</span></td>
+            <td><span class="price">135€</span></td>
+            <td><span class="price">125€</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="size-name">A2</span>
+              <span class="size-dim">42 × 59,4 cm</span>
+            </td>
+            <td>Contacta-me</td>
+            <td>Contacta-me</td>
+            <td>Contacta-me</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="size-name">A1</span>
+              <span class="size-dim">59,4 × 84,1 cm</span>
+            </td>
+            <td>Contacta-me</td>
+            <td>Contacta-me</td>
+            <td>Contacta-me</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pricing-cards reveal" aria-hidden="false">
+      <div class="price-card">
+        <div class="price-card-head">
+          <span class="size">A5</span>
+          <span class="size-note">14,8 × 21 cm</span>
+        </div>
+        <div class="price-card-body">
+          <div class="price-row"><span class="technique">Lápis de cor</span><span class="amount">70€</span></div>
+          <div class="price-row"><span class="technique">Pastel</span><span class="amount">70€</span></div>
+          <div class="price-row"><span class="technique">Grafite</span><span class="amount">50€</span></div>
+          <div class="price-row"><span class="technique">Scratchboard</span><span class="amount">80€</span></div>
         </div>
       </div>
-    </footer>
-  </body>
+
+      <div class="price-card">
+        <div class="price-card-head">
+          <span class="size">A4</span>
+          <span class="size-note">21 × 29,7 cm</span>
+        </div>
+        <div class="price-card-body">
+          <div class="price-row"><span class="technique">Lápis de cor</span><span class="amount">90€</span></div>
+          <div class="price-row"><span class="technique">Pastel</span><span class="amount">90€</span></div>
+          <div class="price-row"><span class="technique">Grafite</span><span class="amount">80€</span></div>
+          <div class="price-row"><span class="technique">Scratchboard</span><span class="amount">110€</span></div>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-card-head">
+          <span class="size">A3</span>
+          <span class="size-note">29,7 × 42 cm</span>
+        </div>
+        <div class="price-card-body">
+          <div class="price-row"><span class="technique">Lápis de cor</span><span class="amount">135€</span></div>
+          <div class="price-row"><span class="technique">Pastel</span><span class="amount">135€</span></div>
+          <div class="price-row"><span class="technique">Grafite</span><span class="amount">125€</span></div>
+          <div class="price-row"><span class="technique">Scratchboard</span><span class="amount muted">indisponível</span></div>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-card-head">
+          <span class="size">A2</span>
+          <span class="size-note">42 × 59,4 cm</span>
+        </div>
+        <div class="price-card-body">
+          <div class="price-row"><span class="technique">Lápis de cor</span><span class="amount">Contacta-me</span></div>
+          <div class="price-row"><span class="technique">Pastel</span><span class="amount">Contacta-me</span></div>
+          <div class="price-row"><span class="technique">Grafite</span><span class="amount">Contacta-me</span></div>
+          <div class="price-row"><span class="technique">Scratchboard</span><span class="amount muted">indisponível</span></div>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-card-head">
+          <span class="size">A1</span>
+          <span class="size-note">59,4 × 84,1 cm</span>
+        </div>
+        <div class="price-card-body">
+          <div class="price-row"><span class="technique">Lápis de cor</span><span class="amount">Contacta-me</span></div>
+          <div class="price-row"><span class="technique">Pastel</span><span class="amount">Contacta-me</span></div>
+          <div class="price-row"><span class="technique">Grafite</span><span class="amount">Contacta-me</span></div>
+          <div class="price-row"><span class="technique">Scratchboard</span><span class="amount muted">indisponível</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="extras reveal">
+      <h4>Extras</h4>
+      <ul>
+        <li>40€ por patudo extra na mesma folha</li>
+        <li>±15€ para colocar fundo no retrato (varia consoante o tamanho)</li>
+        <li>±10€ se pretenderes moldura (varia consoante o tamanho)</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- =================== POLICIES =================== -->
+<section class="section section--alt" id="envio">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Envio &amp; Detalhes</span>
+      <h2>Tudo o que precisas de saber</h2>
+    </div>
+
+    <div class="policies reveal">
+      <div class="policy">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Envios &amp; Prazos
+        </h3>
+        <p>Sempre que possível, faço a entrega em mãos para garantir que chega em perfeitas condições (pode estar associado um valor adicional consoante a distância). Caso contrário, recorro aos CTT, com custos calculados pelo destino e tamanho.</p>
+        <ul>
+          <li>Continente: 1 a 3 dias úteis · +15€ (estimativa A3)</li>
+          <li>Ilhas: 5 a 7 dias úteis · +45€ (estimativa A3)</li>
+          <li>Internacional: 5 a 15 dias úteis · varia com a localização</li>
+        </ul>
+      </div>
+
+      <div class="policy">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          Pagamento
+        </h3>
+        <p>Aceito pagamentos por transferência bancária, MB Way ou numerário. Como cada retrato é feito sob encomenda, personalizado e intransferível, é necessário um pagamento antecipado de 50% no momento da confirmação da encomenda.</p>
+      </div>
+
+      <div class="policy">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          Cuidado com o envio
+        </h3>
+        <p>Todos os retratos são embalados com muito cuidado e carinho, reutilizando o máximo de materiais possíveis. A Natureza é a nossa casa — para mim é um dos bens mais preciosos que temos e devemos respeitá-la.</p>
+      </div>
+
+      <div class="policy">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Garantia &amp; Devoluções
+        </h3>
+        <p>Como cada retrato é feito sob encomenda e representa um patudinho muito particular, é intransmissível e não é possível devolver. Caso haja algum problema (dano no transporte, erro na personalização), contacta-me até 3 dias após o recebimento.</p>
+        <p>Durante o processo de encomenda discutimos abordagens, imagens de referência, ângulos e detalhes. O resultado final só é divulgado na entrega — caso não corresponda às expectativas, pode ser retocado dentro do possível.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CONTACT / FOOTER =================== -->
+<footer class="contact" id="contacto">
+  <div class="wrap">
+    <span class="eyebrow">Contacto</span>
+    <h2>Vamos dar vida ao teu<br/>patudinho?</h2>
+    <p class="contact-lead">Conta-me sobre ele ou ela. Manda-me umas fotos, fala-me da personalidade, e a gente desenha juntos uma memória para guardar.</p>
+
+    <div class="contact-grid">
+      <div class="contact-block">
+        <div class="label">Email</div>
+        <div class="value">
+          <a href="mailto:wildfulcreations@gmail.com">wildfulcreations@gmail.com</a>
+        </div>
+        <div class="socials">
+          <a href="https://www.instagram.com/wildful_creations/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61558253785908" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-block">
+        <div class="label">Estúdio</div>
+        <div class="value">Nazaré<br/>Portugal</div>
+      </div>
+
+      <div class="contact-block">
+        <div class="label">Horário</div>
+        <div class="value">Resposta em<br/>24–48 horas</div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> WildfulCreations · Diana Fernandes</span>
+      <span>Feito com carinho na Nazaré 🌿</span>
+    </div>
+  </div>
+</footer>
+
+<!-- =================== LIGHTBOX =================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagem" aria-hidden="true">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Fechar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+  </button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Imagem anterior">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <div class="lightbox-img-wrap">
+    <img id="lbImage" src="" alt="" />
+  </div>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Próxima imagem">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <div class="lb-counter" id="lbCounter">1 / 1</div>
+</div>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu
+  const btn = document.getElementById('menuBtn');
+  const links = document.getElementById('navLinks');
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  // Close mobile menu on link click
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ===== Lightbox =====
+  const lightbox = document.getElementById('lightbox');
+  const lbImage  = document.getElementById('lbImage');
+  const lbClose  = document.getElementById('lbClose');
+  const lbPrev   = document.getElementById('lbPrev');
+  const lbNext   = document.getElementById('lbNext');
+  const lbCounter= document.getElementById('lbCounter');
+
+  // Each "group" is its own browsable set inside the lightbox.
+  // Portfolio + techniques + good examples each behave independently.
+  const groups = [
+    { name: 'portfolio', images: [...document.querySelectorAll('#portfolioGallery .item img')] },
+    { name: 'tech',      images: [...document.querySelectorAll('#techGallery .tech-card img')] },
+    { name: 'examples',  images: [...document.querySelectorAll('.examples-good .gallery .item img')] },
+  ];
+
+  let activeGroup = null;
+  let currentIndex = 0;
+
+  function openLightbox(group, index){
+    activeGroup = group;
+    currentIndex = index;
+    updateLightbox();
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lb-locked');
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lb-locked');
+  }
+  function updateLightbox(){
+    if (!activeGroup) return;
+    const img = activeGroup.images[currentIndex];
+    lbImage.src = img.src;
+    lbImage.alt = img.alt || '';
+    lbCounter.textContent = `${currentIndex + 1} / ${activeGroup.images.length}`;
+  }
+  function next(){
+    if (!activeGroup) return;
+    currentIndex = (currentIndex + 1) % activeGroup.images.length;
+    updateLightbox();
+  }
+  function prev(){
+    if (!activeGroup) return;
+    currentIndex = (currentIndex - 1 + activeGroup.images.length) % activeGroup.images.length;
+    updateLightbox();
+  }
+
+  // Wire each group's items to open the lightbox in that group
+  groups.forEach(group => {
+    group.images.forEach((img, i) => {
+      const trigger = img.parentElement; // .item or .tech-card
+      trigger.style.cursor = 'zoom-in';
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLightbox(group, i);
+      });
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbNext.addEventListener('click', next);
+  lbPrev.addEventListener('click', prev);
+
+  // Click outside the image to close
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-img-wrap')){
+      closeLightbox();
+    }
+  });
+
+  // Keyboard nav
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  lightbox.addEventListener('touchend',   (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const dx = touchEndX - touchStartX;
+    if (Math.abs(dx) > 50){
+      if (dx < 0) next(); else prev();
+    }
+  }, {passive:true});
+
+  // ===== Load more (portfolio) =====
+  const loadBtn = document.getElementById('loadMoreBtn');
+  const portfolio = document.getElementById('portfolioGallery');
+  if (loadBtn && portfolio){
+    loadBtn.addEventListener('click', () => {
+      const expanded = portfolio.classList.toggle('collapsed') === false;
+      loadBtn.classList.toggle('is-expanded', expanded);
+      loadBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      loadBtn.querySelector('.label-text').textContent = expanded
+        ? 'Mostrar menos'
+        : 'Ver portfólio completo';
+      // If collapsing, scroll back up to the portfolio so the user doesn't get lost
+      if (!expanded){
+        document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+</script>
+
+</body>
 </html>
